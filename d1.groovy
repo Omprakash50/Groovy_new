@@ -13,35 +13,40 @@ sudo cp * /root/web_fol''')
 }
 job("task6_ob2") {
      description("checking the code and launching the pods")
+    scm {
+                       github('Omprakash50/kubernetes')
+                    }
      triggers {
                  upstream('task6_job1' , 'SUCCESS')
         }
       steps {
-             shell('''if sudo ls /root/web_fol | grep .php
+             shell('''
+             sudo cp * /root/
+             if sudo ls /root/web_fol | grep .php
 then
-if sudo kubectl get pods | grep php-container
+if sudo kubectl get pods --kubeconfig kubeconfig| grep php-container
 then
 echo "already running"
-output=$(sudo kubectl get pods | grep php-container | cut -d ' ' -f 1)
-sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/
+output=$(sudo kubectl get pods --kubeconfig kubeconfig | grep php-container | cut -d ' ' -f 1)
+sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/ --kubeconfig kubeconfig
 else
-sudo kubectl apply -f /root/php.yml
+sudo kubectl apply -f /root/php.yml --kubeconfig kubeconfig
 sleep 30
 output=$(sudo kubectl get pods | grep php-container | cut -d ' ' -f 1)
-sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/
+sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/ --kubeconfig kubeconfig
 fi
 elif sudo ls /root/web_fol | grep .html
 then
-if sudo kubectl get pods | grep html-container
+if sudo kubectl get pods | grep html-container --kubeconfig kubeconfig
 then
 echo "already running"
-output=$(sudo kubectl get pods | grep html-container | cut -d ' ' -f 1)
-sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/
+output=$(sudo kubectl get pods --kubeconfig kubeconfig | grep html-container | cut -d ' ' -f 1)
+sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/ --kubeconfig kubeconfig
 else
 sudo kubectl apply -f /root/html.yml
 sleep 30
-output=$(sudo kubectl get pods | grep html-container | cut -d ' ' -f 1)
-sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/
+output=$(sudo kubectl get pods --kubeconfig kubeconfig | grep html-container | cut -d ' ' -f 1)
+sudo kubectl cp /root/web_fol/first.html $output:/var/www/html/ --kubeconfig kubeconfig
 fi
 else
 sudo echo "Don't have environment for this file"
