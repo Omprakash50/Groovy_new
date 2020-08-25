@@ -61,10 +61,10 @@ job("task6_ob3") {
       steps {
              shell('''if sudo ls /root/web_fol | grep .php
 then
-status=$(curl -s -i -w "%{http_code}" -o /dev/null 192.168.99.107:30000/first1.php)
+status=$(curl -s -i -w "%{http_code}" -o /dev/null 192.168.99.107:30000/first.php)
 elif sudo ls /root/web_fol | grep .html
 then
-status=$(curl -s -i -w "%{http_code}" -o /dev/null 192.168.99.107:30000/first1.html)
+status=$(curl -s -i -w "%{http_code}" -o /dev/null 192.168.99.107:30000/first.html)
 else
 sudo echo "Don't have environment for this file"
 fi
