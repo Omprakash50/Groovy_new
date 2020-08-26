@@ -1,4 +1,4 @@
-job("task6_ob1") {
+job("task6_job1") {
   description("Download the data from github")
                scm {
                        github('Omprakash50/kubernetes')
@@ -10,7 +10,7 @@ job("task6_ob1") {
                        shell('''sudo cp * /root/web_fol''')
                     }
 }
-job("task6_ob2") {
+job("task6_job2") {
      description("checking the code and launching the pods")
     scm {
                        github('Omprakash50/kubernetes')
@@ -51,7 +51,7 @@ sudo echo "Don't have environment for this file"
 fi''')
          }
 }
-job("task6_ob3") {
+job("task6_job3") {
       description("Testing the code by seeing its status code")
       triggers {
                 upstream('task6_job2' , 'SUCCESS')
@@ -70,7 +70,7 @@ fi
 if [[ $status == 200 ]] ; then exit 0  ; else sudo curl --user 'admin:Omkar@jio.com1' http://192.168.99.109:8080/job/Notify/build?token=mail ;fi''')
       }    
 }
-job("task6_ob4") {
+job("task6_job4") {
       description("Sending Email if error occur in the code otherwise not")
       triggers {
                   upstream('task6_job3' , 'SUCCESS')
