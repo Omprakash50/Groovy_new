@@ -72,7 +72,11 @@ if [[ $status == 200 ]] ; then exit 0  ; else sudo curl --user 'admin:Omkar@jio.
 }
 job("task6_job4") {
       description("Sending Email if error occur in the code otherwise not")
-      triggers {
+     
+       triggers {
+        scm('mail')
+    }
+     triggers {
                   upstream('task6_job3' , 'SUCCESS')
             }
       steps {
