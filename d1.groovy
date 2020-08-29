@@ -81,8 +81,8 @@ job("task6_job4") {
       
 }
 
-buildPipelineView("groovy-pipeline")
+buildPipelineView("Groovy Pipeline")
 {
-title("Automation Using Jenkins DSL")
+title("Automation Using Jenkins DSL :D ")
 selectedJob("task6_job1")
 }
