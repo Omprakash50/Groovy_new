@@ -84,8 +84,5 @@ job("task6_job4") {
 buildPipelineView("groovy-pipeline")
 {
 title("hiiiiiiiii")
-selectedjob("task6_job1")
-alwaysAllowMaunalTrigger(true)
-displayedBuilds(1)
-showPipelineParameters(true)
+selectedJob("task6_job1")
 }
