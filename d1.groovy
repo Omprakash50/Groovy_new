@@ -85,7 +85,4 @@ buildPipelineView("groovy-pipeline")
 {
 title("Automation using jenkins DSL")
 selectedJob("task6_job1")
-alwaysAllowMaunalTrigger(true)
-displayedBuilds(1)
-showPipelineParameters(true)
 }
