@@ -66,20 +66,17 @@ status=$(curl -s -i -w "%{http_code}" -o /dev/null 192.168.99.107:30000/first.ht
 else
 sudo echo "Don't have environment for this file"
 fi
-
 if [[ $status == 200 ]] ; then exit 0  ; else sudo curl --user 'admin:Omkar@jio.com1' http://192.168.99.109:8080/job/Notify/build?token=mail ;fi''')
       }    
 }
 job("task6_job4") {
       description("Sending Email if error occur in the code otherwise not")
-     
-       triggers {
-        scm('mail')
-    }
-     triggers {
-                  upstream('task6_job3' , 'SUCCESS')
-            }
+      
+      authenticationToken('mail')
+  
       steps {
                   shell('''sudo python3 /root/mail.py''')
             }
-}            
+      
+      
+}
