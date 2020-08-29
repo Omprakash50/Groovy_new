@@ -66,7 +66,7 @@ status=$(curl -s -i -w "%{http_code}" -o /dev/null 192.168.99.107:30000/first.ht
 else
 sudo echo "Don't have environment for this file"
 fi
-if [[ $status == 200 ]] ; then exit 0  ; else sudo curl --user 'admin:Omkar@jio.com1' http://192.168.99.110:8080/job/task6_job4/build?token=mail ;fi''')
+if [[ $status == 200 ]] ; then exit 0  ; else sudo curl --user 'admin:**********' http://192.168.99.110:8080/job/task6_job4/build?token=mail ;fi''')
       }    
 }
 job("task6_job4") {
